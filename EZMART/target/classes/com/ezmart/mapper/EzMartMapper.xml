@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sos.mapper.SosMapper">
+<mapper namespace="com.ezmart.mapper.EzMartMapper">
+    
+     <insert id="memberJoin" parameterType="com.ezmart.domain.MemberVO">
+     insert into tbl_member
+        values(#{mb_id}, #{mb_pw}, #{mb_name}, #{mb_nick}, #{mb_email}, #{mb_phone}, 2 , #{mb_cardnum})
+    </insert>
+    
+     <select id="memberLogin" parameterType="com.ezmart.domain.MemberVO" resultType="com.ezmart.domain.MemberVO">
+		select * from tbl_member where mb_id = #{mb_id} and mb_pw = #{mb_pw}
+	</select>
+     
     
     
 </mapper>
