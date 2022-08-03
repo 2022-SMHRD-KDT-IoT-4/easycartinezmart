@@ -71,18 +71,15 @@ public class EzMartController {
 	    }
 	    
 	    // 4. 상품정보 바코드로 불러오기
-	    @GetMapping("/productlist.do")
-	    public void productList(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
+	    @ResponseBody
+	    @RequestMapping("/getproduct.do")
+	    public Map<String, Object> getproduct(String p_barcode){
+	    	Map<String, Object> result = new HashMap<String, Object>();
+	    	result.put("datas", mapper.getproduct(p_barcode));
 	    	
-	    	response.setContentType("text/html; charset = UTF-8");
+	    	System.out.println(result);
 	    	
-	    	String barcode = request.getParameter("p_barcode");
-	    	List<tbl_product> list = mapper.getproduct(barcode);
-	    	model.addAllAttributes(list);
-	    	PrintWriter out = response.getWriter();
-	    	out.print(list);
-	    	System.out.println(list);
-	    	
+	    	return result;
 	    }
 	    
 	    
