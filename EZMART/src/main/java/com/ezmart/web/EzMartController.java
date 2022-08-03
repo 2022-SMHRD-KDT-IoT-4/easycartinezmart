@@ -2,7 +2,9 @@ package com.ezmart.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -60,10 +62,12 @@ public class EzMartController {
 	    }
 	    
 	    // 3. 상품목록 불러오기
+	    @ResponseBody
 	    @RequestMapping("/ProductList.do")
-	    public @ResponseBody List<tbl_product> productList(){
-	    	List<tbl_product> list = mapper.productList();
-	    	return list;
+	    public Map<String, Object> productList(){
+	    	Map<String, Object> result = new HashMap<String, Object>();
+	    	result.put("datas", mapper.productList());
+	    	return result;
 	    }
 	    
 	    // 4. 상품정보 바코드로 불러오기
