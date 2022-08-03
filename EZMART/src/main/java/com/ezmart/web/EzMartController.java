@@ -1,5 +1,7 @@
 package com.ezmart.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezmart.domain.MemberVO;
+import com.ezmart.domain.tbl_product;
 import com.ezmart.mapper.EzMartMapper;
 import org.springframework.ui.Model;
 
@@ -50,5 +53,12 @@ public class EzMartController {
 	       }
 	       
 	       return url;
+	    }
+	    
+	    // 3. 상품목록 불러오기
+	    @RequestMapping("/ProductList.do")
+	    public @ResponseBody List<tbl_product> productList(){
+	    	List<tbl_product> list = mapper.productList();
+	    	return list;
 	    }
 }

@@ -10,6 +10,10 @@
      <select id="memberLogin" parameterType="com.ezmart.domain.MemberVO" resultType="com.ezmart.domain.MemberVO">
 		select * from tbl_member where mb_id = #{mb_id} and mb_pw = #{mb_pw}
 	</select>
+	
+     <select id="productList" resultType="com.ezmart.domain.tbl_product">
+         select * from tbl_product 
+     </select>
      
     
     
