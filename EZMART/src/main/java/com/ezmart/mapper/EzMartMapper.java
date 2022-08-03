@@ -12,5 +12,8 @@ public interface EzMartMapper {
 	public MemberVO memberLogin(MemberVO vo);
 	
 	public List<tbl_product> productList();
+	
+	// 바코드로 상품정보 불러오기
+	public List<tbl_product> getproduct(String p_barcode);
 
 }

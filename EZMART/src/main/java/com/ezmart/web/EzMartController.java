@@ -1,7 +1,11 @@
 package com.ezmart.web;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,4 +65,23 @@ public class EzMartController {
 	    	List<tbl_product> list = mapper.productList();
 	    	return list;
 	    }
+	    
+	    // 4. 상품정보 바코드로 불러오기
+	    @GetMapping("/productlist.do")
+	    public void productList(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
+	    	
+	    	response.setContentType("text/html; charset = UTF-8");
+	    	
+	    	String barcode = request.getParameter("p_barcode");
+	    	List<tbl_product> list = mapper.getproduct(barcode);
+	    	model.addAllAttributes(list);
+	    	PrintWriter out = response.getWriter();
+	    	out.print(list);
+	    	System.out.println(list);
+	    	
+	    }
+	    
+	    
+	    
+	    
 }
