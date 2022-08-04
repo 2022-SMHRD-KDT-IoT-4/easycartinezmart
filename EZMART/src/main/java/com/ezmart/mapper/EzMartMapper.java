@@ -15,5 +15,9 @@ public interface EzMartMapper {
 	
 	// 바코드로 상품정보 불러오기
 	public List<tbl_product> getproduct(String p_barcode);
+	
+	// 검색
+	public List<tbl_product> productSearch(String search);
+
 
 }

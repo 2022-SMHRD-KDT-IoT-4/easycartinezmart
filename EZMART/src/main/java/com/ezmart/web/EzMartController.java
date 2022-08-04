@@ -2,6 +2,7 @@ package com.ezmart.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,6 +83,15 @@ public class EzMartController {
 	    	return result;
 	    }
 	    
+	 // 5. 상품목록 검색
+	    @ResponseBody
+	    @RequestMapping("/productSearch.do")
+	    public Object productSearch(String search){
+	   
+	    	  return mapper.productSearch("%"+search+"%");
+	    	
+	    }
+	  
 	    
 	    
 	    
