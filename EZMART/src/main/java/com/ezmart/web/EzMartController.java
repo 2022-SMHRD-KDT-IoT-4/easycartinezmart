@@ -83,6 +83,15 @@ public class EzMartController {
 	    	return result;
 	    }
 	    
+	 // 5. 상품목록 검색
+	    @ResponseBody
+	    @RequestMapping("/productSearch.do")
+	    public Object productSearch(String search){
+	   
+	    	  return mapper.productSearch("%"+search+"%");
+	    	
+	    }
+	  
 	    
 	    
 	    
