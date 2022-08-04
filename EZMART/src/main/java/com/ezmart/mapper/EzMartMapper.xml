@@ -19,12 +19,11 @@
  	<select id="getproduct" resultType="com.ezmart.domain.tbl_product">
 		select * from tbl_product where p_barcode = #{p_barcode}
  	</select>
+
     
  	<!-- 상품 검색하기 -->
- 	 <select id="productSearch" resultType="com.ezmart.domain.tbl_product">
- 	    select * from tbl_product where p_name like #{search}
- 	    
- 	</select>
-    
+    <select id="productSearch" resultType="com.ezmart.domain.tbl_product">
+        select * from tbl_product where p_name like #{search}
+    </select>
     
 </mapper>
