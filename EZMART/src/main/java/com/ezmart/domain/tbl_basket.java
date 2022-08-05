@@ -11,7 +11,7 @@ public class tbl_basket {
 	
 	private int b_seq;
 	private int p_seq;
-	private String b_Date;
+	private String b_date;
 	private String mb_id;
 	private String b_check;
 
