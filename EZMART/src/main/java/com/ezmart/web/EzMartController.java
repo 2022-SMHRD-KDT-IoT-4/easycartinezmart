@@ -86,7 +86,7 @@ public class EzMartController {
     	return result;
     }
     
- // 5. 상품목록 검색
+    // 5. 상품목록 검색
     @ResponseBody
     @RequestMapping("/productSearch.do")
     public Object productSearch(String search){
@@ -108,20 +108,17 @@ public class EzMartController {
     }
 	
     
+    
 	// 장바구니 리스트 
     @RequestMapping("/basketlist.do")
-    public List<tbl_basketall> basketlist(HttpSession session, Model model, tbl_basketall vo, int b_seq) {
+    public List<tbl_basketall> basketlist(HttpSession session, Model model, tbl_basketall vo) {
     	String mb_id = (String)session.getAttribute("mb_id");
     	
     	List<tbl_basketall> list = mapper.basketlist(mb_id);
     	
-    	
     	model.addAttribute("list", list);
     	System.out.println(list);
     	
-    	if(vo.getB_check().equals("true")) {
-    		mapper.basketdelete(b_seq);
-    	}
 
     	return list;
     }
