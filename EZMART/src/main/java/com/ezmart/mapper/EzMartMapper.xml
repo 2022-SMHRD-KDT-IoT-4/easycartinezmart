@@ -37,7 +37,7 @@
 		from tbl_member m, tbl_product p, tbl_basket b
 		where m.mb_id = b.mb_id
 			and p.p_seq = b.p_seq
-			and b.b_seq = #{b_seq}
+			and b.b_seq = 9
  	</select>
  	
  	<!-- 3. 장바구니 삭제 -->
