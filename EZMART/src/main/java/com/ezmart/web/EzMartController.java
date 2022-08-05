@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,11 +61,34 @@ public class EzMartController {
         if (result != null) {
           url = "redirect:/main.do";
        } else {
-          url = "redirect:/login.do";
+          url = "login";
        }
        
        return url;
     }
+    
+	@RequestMapping("/sendLogin.do")
+	public @ResponseBody JSONObject sendLogin(MemberVO vo) {
+		System.out.println(vo.getMb_id());
+		JSONObject result = new JSONObject();
+		JSONArray jarray = new JSONArray();
+		MemberVO resultVO = mapper.memberLogin(vo);
+		if(vo!=null) {
+			JSONObject pre = new JSONObject();
+			pre.put("mb_id", resultVO.getMb_id());
+			pre.put("mb_pw", resultVO.getMb_pw());
+			pre.put("mb_name", resultVO.getMb_name());
+			pre.put("mb_nick", resultVO.getMb_nick());
+			pre.put("mb_email", resultVO.getMb_email());
+			pre.put("mb_phone", resultVO.getMb_phone());
+			pre.put("mb_type", resultVO.getMb_type());
+			pre.put("mb_cardnum", resultVO.getMb_cardnum());
+			jarray.add(0, pre);
+			result.put("user", jarray);
+		}
+		return result;
+	}
+    
     
     // 3. 상품목록 불러오기
     @ResponseBody
