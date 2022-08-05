@@ -45,6 +45,7 @@ public class EzMartController {
 		
 	}
 	
+<<<<<<< HEAD
    @RequestMapping("/Login.do")
    public String gologin() {
       return "login";
@@ -136,6 +137,58 @@ public class EzMartController {
     
     
     
+=======
+	   @RequestMapping("/Login.do")
+	   public String gologin() {
+	      return "login";
+	   }
+	   
+	   // 2. 로그인
+	    @PostMapping("/Login.do")
+	    public String login(MemberVO vo, Model model) {
+	        MemberVO result = mapper.memberLogin(vo);
+	        String url = "";
+	        model.addAttribute("vo", vo);
+	        if (result != null) {
+	          url = "redirect:/main.do";
+	       } else {
+	          url = "redirect:/login.do";
+	       }
+	       
+	       return url;
+	    }
+	    
+	    // 3. 상품목록 불러오기
+	    @ResponseBody
+	    @RequestMapping("/ProductList.do")
+	    public Map<String, Object> productList(){
+	    	Map<String, Object> result = new HashMap<String, Object>();
+	    	result.put("datas", mapper.productList());
+	    	return result;
+	    }
+	    
+	    // 4. 상품정보 바코드로 불러오기0
+	    @ResponseBody
+	    @RequestMapping("/getproduct.do")
+	    public Map<String, Object> getproduct(String p_barcode){
+	    	Map<String, Object> result = new HashMap<String, Object>();
+	    	result.put("datas", mapper.getproduct(p_barcode));
+	    	
+	    	System.out.println(result);
+	    	
+	    	return result;
+	    }
+	    
+	 // 5. 상품목록 검색
+	    @ResponseBody
+	    @RequestMapping("/productSearch.do")
+	    public Object productSearch(String search){
+	    	  return mapper.productSearch("%"+search+"%");
+	    	
+	    }
+	  
+	    
+>>>>>>> branch 'master' of https://github.com/2022-SMHRD-KDT-IoT-4/easycartinezmart.git
 	    
 	    
 }
