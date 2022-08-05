@@ -112,7 +112,7 @@ public class EzMartController {
     @RequestMapping("/basketlist.do")
     public List<tbl_basketall> basketlist(HttpSession session, Model model, tbl_basketall vo, int b_seq) {
     	String mb_id = (String)session.getAttribute("mb_id");
-    	
+    
     	List<tbl_basketall> list = mapper.basketlist(mb_id);
     	
     	
