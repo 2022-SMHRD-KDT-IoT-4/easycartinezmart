@@ -71,7 +71,7 @@ public class EzMartController {
 	    	return result;
 	    }
 	    
-	    // 4. 상품정보 바코드로 불러오기
+	    // 4. 상품정보 바코드로 불러오기0
 	    @ResponseBody
 	    @RequestMapping("/getproduct.do")
 	    public Map<String, Object> getproduct(String p_barcode){
@@ -87,7 +87,6 @@ public class EzMartController {
 	    @ResponseBody
 	    @RequestMapping("/productSearch.do")
 	    public Object productSearch(String search){
-	   
 	    	  return mapper.productSearch("%"+search+"%");
 	    	
 	    }
