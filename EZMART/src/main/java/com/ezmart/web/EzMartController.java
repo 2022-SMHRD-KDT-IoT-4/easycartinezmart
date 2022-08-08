@@ -30,11 +30,15 @@ import org.springframework.ui.Model;
 
 @Controller
 public class EzMartController {
+	
 	@Autowired
 	EzMartMapper mapper;
 	
+	
+	// 1. 처음 실행 했을 때 이동하는 주소
 	@RequestMapping("/main.do")
 	public void main() {}
+	
 	
 	// 1. 회원가입
 	@RequestMapping("/Join.do")
@@ -47,12 +51,14 @@ public class EzMartController {
 		
 	}
 	
+	
    @RequestMapping("/Login.do")
    public String gologin() {
       return "login";
    }
    
-   // 2. 로그인
+   
+	// 2-1. 로그인
     @PostMapping("/Login.do")
     public String login(MemberVO vo, Model model) {
         MemberVO result = mapper.memberLogin(vo);
@@ -67,6 +73,8 @@ public class EzMartController {
        return url;
     }
     
+    
+    // 2-2. 로그인 후 회원정보 안드로이드로 넘겨주기
 	@RequestMapping("/sendLogin.do")
 	public @ResponseBody JSONObject sendLogin(MemberVO vo) {
 		System.out.println(vo.getMb_id());
@@ -99,6 +107,7 @@ public class EzMartController {
     	return result;
     }
     
+    
     // 4. 상품정보 바코드로 불러오기
     @ResponseBody
     @RequestMapping("/getproduct.do")
@@ -111,6 +120,7 @@ public class EzMartController {
     	return result;
     }
     
+    
     // 5. 상품목록 검색
     @ResponseBody
     @RequestMapping("/productSearch.do")
@@ -122,11 +132,9 @@ public class EzMartController {
   
     
 	
-    // 장바구니에 상품 담기
+    // 6-1. 장바구니에 상품 담기
     @RequestMapping("/insertbasket.do")
-    public String insertbasket(HttpSession session, tbl_member memvo, tbl_basket vo, Model model) {
-    	String mb_id = (String)session.getAttribute("mb_id");
-    	memvo.setMb_id(mb_id);
+    public String insertbasket(HttpSession session, tbl_basket vo, Model model) {
     	mapper.insertbasket(vo);
     	
     	return "insertbasket";
@@ -134,10 +142,9 @@ public class EzMartController {
 	
     
     
-	// 장바구니 리스트 
+	// 6-2. 장바구니 리스트 
     @RequestMapping("/basketlist.do")
-    public List<tbl_basketall> basketlist(HttpSession session, Model model, tbl_basketall vo) {
-    	String mb_id = (String)session.getAttribute("mb_id");
+    public List<tbl_basketall> basketlist( Model model, tbl_basketall vo, String mb_id) {
     
     	List<tbl_basketall> list = mapper.basketlist(mb_id);
     	
@@ -149,11 +156,20 @@ public class EzMartController {
     }
 
     
-    // 장바구니 상품 삭제하기
+    // 6-3. 장바구니 상품 삭제하기
     @RequestMapping("/basketdelete.do")
     public String delete(int b_seq) {
     	mapper.basketdelete(b_seq);
     	return "basketlist";
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
