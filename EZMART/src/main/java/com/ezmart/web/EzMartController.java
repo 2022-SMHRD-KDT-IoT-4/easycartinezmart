@@ -53,29 +53,29 @@ public class EzMartController {
 	}
 	
 	
-   @RequestMapping("/Login.do")
-   public String gologin() {
-      return "login";
-   }
-   
-   
-	// 2-1. 로그인
-    @PostMapping("/Login.do")
-    public String login(MemberVO vo, Model model) {
-        MemberVO result = mapper.memberLogin(vo);
-        String url = "";
-        model.addAttribute("vo", vo);
-        if (result != null) {
-          url = "redirect:/main.do";
-       } else {
-          url = "login";
-       }
-       
-       return url;
-    }
+//   @RequestMapping("/Login.do")
+//   public String gologin() {
+//      return "login";
+//   }
+//   
+//   
+//	// 2-1. 로그인
+//    @PostMapping("/Login.do")
+//    public String login(MemberVO vo, Model model) {
+//        MemberVO result = mapper.memberLogin(vo);
+//        String url = "";
+//        model.addAttribute("vo", vo);
+//        if (result != null) {
+//          url = "redirect:/main.do";
+//       } else {
+//          url = "login";
+//       }
+//       
+//       return url;
+//    }
     
     
-    // 2-2. 로그인 후 회원정보 안드로이드로 넘겨주기
+    // 2. 로그인 (+회원정보 안드로이드로 넘겨주기)
 	@RequestMapping("/sendLogin.do")
 	public @ResponseBody JSONObject sendLogin(MemberVO vo) {
 		System.out.println(vo.getMb_id());
@@ -156,7 +156,6 @@ public class EzMartController {
 	
 
 	// 6-2. 장바구니 리스트 
-
     @ResponseBody
     @RequestMapping("/basketlist.do")
     public List<tbl_basketall> basketlist(Model model, String mb_id) {

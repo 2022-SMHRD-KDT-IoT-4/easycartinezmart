@@ -45,6 +45,7 @@
 		select m.mb_id, p.p_seq, p.p_price, p.p_image, p.p_name, p.p_cate, p.p_sort, b.b_seq, b.b_date, b.b_check
 		from tbl_member m, tbl_product p, tbl_basket b
 		where p.p_seq = b.p_seq
+			and m.mb_id = b.mb_id
 			and m.mb_id = #{mb_id}
  	</select>
  	
