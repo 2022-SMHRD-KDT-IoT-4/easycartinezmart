@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezmart.domain.MemberVO;
+import com.ezmart.domain.SaveVO;
 import com.ezmart.domain.tbl_basket;
 import com.ezmart.domain.tbl_basketall;
 import com.ezmart.domain.tbl_member;
@@ -134,9 +135,23 @@ public class EzMartController {
     // 6-1. 장바구니에 상품 담기
     @ResponseBody
     @RequestMapping("/insertbasket.do")
-    public String insertbasket(HttpSession session, tbl_basket vo, Model model) {
-    	mapper.insertbasket(vo);	
+    public String insertbasket(SaveVO vo, Model model) {
+    	
+    	System.out.println(vo.getMb_id());
+    	System.out.println(vo.getP_price());
+    	System.out.println(vo.getP_name());
+    	System.out.println(vo.getP_image());
+    	System.out.println(vo.getP_seq());
+    	
+//    	tbl_basket vo1 = new tbl_basket();
+//    	vo1.setP_seq(Integer.parseInt(vo.getP_seq()));
+//    	vo1.setMb_id(vo.getMb_id());
+
+    	
+    	mapper.insertbasket(vo);
     	return "insertbasket";
+    	
+    	
     }
 	
 
@@ -144,7 +159,7 @@ public class EzMartController {
 
     @ResponseBody
     @RequestMapping("/basketlist.do")
-    public List<tbl_basketall> basketlist( Model model, String mb_id) {
+    public List<tbl_basketall> basketlist(Model model, String mb_id) {
     	List<tbl_basketall> list = mapper.basketlist(mb_id);
     	model.addAttribute("list", list);
     	System.out.println(list);  	

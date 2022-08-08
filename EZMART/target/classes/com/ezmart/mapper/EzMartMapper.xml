@@ -35,8 +35,8 @@
     
     <!-- 1. 장바구니 추가 -->
 
- 	<insert id="insertbasket">
- 	    insert into tbl_basket values (b_seq.NEXTVAL, p_seq.NEXTVAL, to_date(sysdate,'yyyy.mm.dd hh24:mi'), #{mb_id}, '2')
+ 	<insert id="insertbasket" parameterType="com.ezmart.domain.tbl_basket">
+ 	    insert into tbl_basket values (b_seq.NEXTVAL, #{p_seq}, to_date(sysdate,'yyyy.mm.dd hh24:mi'), #{mb_id}, '2')
  	</insert>
  	
  	
