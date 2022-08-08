@@ -23,8 +23,8 @@ public interface EzMartMapper {
 	public List<tbl_product> productSearch(String search);
 	
 	// 장바구니 추가하기
-//	public List<tbl_basket> insertbasket(tbl_basket vo);
 	public List<tbl_basket> insertbasket(SaveVO vo);
+
 	
 	// 장바구니 리스트
 	public List<tbl_basketall> basketlist(String mb_id);

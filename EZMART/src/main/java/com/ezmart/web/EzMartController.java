@@ -135,7 +135,7 @@ public class EzMartController {
     // 6-1. 장바구니에 상품 담기
     @ResponseBody
     @RequestMapping("/insertbasket.do")
-    public String insertbasket(SaveVO vo, Model model) {
+    public String insertbasket(SaveVO vo) {
     	
     	System.out.println(vo.getMb_id());
     	System.out.println(vo.getP_price());
@@ -143,7 +143,7 @@ public class EzMartController {
     	System.out.println(vo.getP_image());
     	System.out.println(vo.getP_seq());
     	
-//    	tbl_basket vo1 = new tbl_basket();
+  //  	tbl_basket vo = new tbl_basket();
 //    	vo1.setP_seq(Integer.parseInt(vo.getP_seq()));
 //    	vo1.setMb_id(vo.getMb_id());
 
