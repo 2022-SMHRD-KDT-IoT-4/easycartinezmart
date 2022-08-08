@@ -2,18 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ezmart.mapper.EzMartMapper">
     
-     <insert id="memberJoin" parameterType="com.ezmart.domain.MemberVO">
+    <!-- 회원가입 -->
+    <insert id="memberJoin" parameterType="com.ezmart.domain.MemberVO">
      insert into tbl_member
         values(#{mb_id}, #{mb_pw}, #{mb_name}, #{mb_nick}, #{mb_email}, #{mb_phone}, 2 , #{mb_cardnum})
     </insert>
     
-     <select id="memberLogin" parameterType="com.ezmart.domain.MemberVO" resultType="com.ezmart.domain.MemberVO">
+    
+    <!-- 로그인 --> 
+    <select id="memberLogin" parameterType="com.ezmart.domain.MemberVO" resultType="com.ezmart.domain.MemberVO">
 		select * from tbl_member where mb_id = #{mb_id} and mb_pw = #{mb_pw}
 	</select>
 	
-     <select id="productList" resultType="com.ezmart.domain.tbl_product">
+    
+    <!-- 상품리스트 -->
+    <select id="productList" resultType="com.ezmart.domain.tbl_product">
          select * from tbl_product 
-     </select>
+    </select>
+    
     
     <!-- 바코드로 상품정보 가져오기 -->
  	<select id="getproduct" resultType="com.ezmart.domain.tbl_product">
@@ -26,26 +32,27 @@
         select * from tbl_product where p_name like #{search}
     </select>
     
+    
     <!-- 1. 장바구니 추가 -->
- 	<insert id="insertbasket" parameterType="com.ezmart.domain.tbl_basket">
- 	    insert into tbl_basket values (b_seq.NEXTVAL, p_seq.NEXTVAL, #{b_date}, #{mb_id}, 'false')
+
+ 	<insert id="insertbasket">
+ 	    insert into tbl_basket values (b_seq.NEXTVAL, p_seq.NEXTVAL, to_date(sysdate,'yyyy.mm.dd hh24:mi'), #{mb_id}, '2')
  	</insert>
  	
- 	<!-- 2. 장바구니 목록 -->
+ 	
+ 	<!-- 2. 장바구니 목록(아이디 기준으로 가져오기) -->
  	<select id="basketlist" resultType="com.ezmart.domain.tbl_basketall">
 		select m.mb_id, p.p_seq, p.p_price, p.p_image, p.p_name, p.p_cate, p.p_sort, b.b_seq, b.b_date, b.b_check
 		from tbl_member m, tbl_product p, tbl_basket b
-		where m.mb_id = b.mb_id
-			and p.p_seq = b.p_seq
-			and b.b_seq = 9
+		where p.p_seq = b.p_seq
+			and m.mb_id = #{mb_id}
  	</select>
  	
- 	<!-- 3. 장바구니 삭제 -->
+ 	
+ 	<!-- 3. 장바구니 내용 삭제(장바구니 시퀀스 번호 기준으로 삭제하기) -->
  	<delete id="basketdelete">
  	    delete from tbl_basket where b_seq = #{b_seq}
  	</delete>
  	
-    
-    
     
 </mapper>
