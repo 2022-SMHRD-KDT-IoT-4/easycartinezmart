@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class tbl_basketall {
 	
 	private int b_seq;
-	private String b_Date;
+	private String b_date;
 	private String b_check;
 	
 	private int p_seq;

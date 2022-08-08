@@ -27,8 +27,8 @@
     </select>
     
     <!-- 1. 장바구니 추가 -->
- 	<insert id="insertbasket">
- 	    insert into tbl_basket values (b_seq.NEXTVAL, p_seq.NEXTVAL, #{b_date}, #{mb_id}, #{p_price}, 'false')
+ 	<insert id="insertbasket" parameterType="com.ezmart.domain.tbl_basket">
+ 	    insert into tbl_basket values (b_seq.NEXTVAL, p_seq.NEXTVAL, #{b_date}, #{mb_id}, 'false')
  	</insert>
  	
  	<!-- 2. 장바구니 목록 -->

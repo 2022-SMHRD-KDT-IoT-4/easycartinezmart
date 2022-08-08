@@ -99,7 +99,7 @@ public class EzMartController {
 	
     // 장바구니에 상품 담기
     @RequestMapping("/insertbasket.do")
-    public String insertbasket(HttpSession session, tbl_member memvo, tbl_basket vo, Model model) {
+    public @ResponseBody String insertbasket(HttpSession session, tbl_member memvo, tbl_basket vo, Model model) {
     	String mb_id = (String)session.getAttribute("mb_id");
     	memvo.setMb_id(mb_id);
     	mapper.insertbasket(vo);
@@ -110,8 +110,9 @@ public class EzMartController {
     
     
 	// 장바구니 리스트 
+   
     @RequestMapping("/basketlist.do")
-    public List<tbl_basketall> basketlist(HttpSession session, Model model, tbl_basketall vo) {
+    public @ResponseBody List<tbl_basketall> basketlist(HttpSession session, Model model, tbl_basketall vo) {
     	String mb_id = (String)session.getAttribute("mb_id");
     
     	List<tbl_basketall> list = mapper.basketlist(mb_id);
