@@ -31,35 +31,35 @@ import org.springframework.ui.Model;
 
 @Controller
 public class EzMartController {
-	
-	@Autowired
-	EzMartMapper mapper;
-	
-	
-	// 1. 처음 실행 했을 때 이동하는 주소
-	@RequestMapping("/main.do")
-	public void main() {}
-	
-	
-	// 1. 회원가입
-	@RequestMapping("/Join.do")
-	public @ResponseBody String memerJoin(MemberVO vo) {
-		
-		System.out.println(vo);
-		
-		mapper.memberJoin(vo);
-		return "redirect:/main.do";
-		
-	}
-	
-	
+   
+   @Autowired
+   EzMartMapper mapper;
+   
+   
+   // 1. 처음 실행 했을 때 이동하는 주소
+   @RequestMapping("/main.do")
+   public void main() {}
+   
+   
+   // 1. 회원가입
+   @RequestMapping("/Join.do")
+   public @ResponseBody String memerJoin(MemberVO vo) {
+      
+      System.out.println(vo);
+      
+      mapper.memberJoin(vo);
+      return "redirect:/main.do";
+      
+   }
+   
+   
 //   @RequestMapping("/Login.do")
 //   public String gologin() {
 //      return "login";
 //   }
 //   
 //   
-//	// 2-1. 로그인
+//   // 2-1. 로그인
 //    @PostMapping("/Login.do")
 //    public String login(MemberVO vo, Model model) {
 //        MemberVO result = mapper.memberLogin(vo);
@@ -76,36 +76,36 @@ public class EzMartController {
     
     
     // 2. 로그인 (+회원정보 안드로이드로 넘겨주기)
-	@RequestMapping("/sendLogin.do")
-	public @ResponseBody JSONObject sendLogin(MemberVO vo) {
-		System.out.println(vo.getMb_id());
-		JSONObject result = new JSONObject();
-		JSONArray jarray = new JSONArray();
-		MemberVO resultVO = mapper.memberLogin(vo);
-		if(vo!=null) {
-			JSONObject pre = new JSONObject();
-			pre.put("mb_id", resultVO.getMb_id());
-			pre.put("mb_pw", resultVO.getMb_pw());
-			pre.put("mb_name", resultVO.getMb_name());
-			pre.put("mb_nick", resultVO.getMb_nick());
-			pre.put("mb_email", resultVO.getMb_email());
-			pre.put("mb_phone", resultVO.getMb_phone());
-			pre.put("mb_type", resultVO.getMb_type());
-			pre.put("mb_cardnum", resultVO.getMb_cardnum());
-			jarray.add(0, pre);
-			result.put("user", jarray);
-		}
-		return result;
-	}
+   @RequestMapping("/sendLogin.do")
+   public @ResponseBody JSONObject sendLogin(MemberVO vo) {
+      System.out.println(vo.getMb_id());
+      JSONObject result = new JSONObject();
+      JSONArray jarray = new JSONArray();
+      MemberVO resultVO = mapper.memberLogin(vo);
+      if(vo!=null) {
+         JSONObject pre = new JSONObject();
+         pre.put("mb_id", resultVO.getMb_id());
+         pre.put("mb_pw", resultVO.getMb_pw());
+         pre.put("mb_name", resultVO.getMb_name());
+         pre.put("mb_nick", resultVO.getMb_nick());
+         pre.put("mb_email", resultVO.getMb_email());
+         pre.put("mb_phone", resultVO.getMb_phone());
+         pre.put("mb_type", resultVO.getMb_type());
+         pre.put("mb_cardnum", resultVO.getMb_cardnum());
+         jarray.add(0, pre);
+         result.put("user", jarray);
+      }
+      return result;
+   }
     
     
     // 3. 상품목록 불러오기
     @ResponseBody
     @RequestMapping("/ProductList.do")
     public Map<String, Object> productList(){
-    	Map<String, Object> result = new HashMap<String, Object>();
-    	result.put("datas", mapper.productList());
-    	return result;
+       Map<String, Object> result = new HashMap<String, Object>();
+       result.put("datas", mapper.productList());
+       return result;
     }
     
     
@@ -113,12 +113,12 @@ public class EzMartController {
     @ResponseBody
     @RequestMapping("/getproduct.do")
     public Map<String, Object> getproduct(String p_barcode){
-    	Map<String, Object> result = new HashMap<String, Object>();
-    	result.put("datas", mapper.getproduct(p_barcode));
-    	
-    	System.out.println(result);
-    	
-    	return result;
+       Map<String, Object> result = new HashMap<String, Object>();
+       result.put("datas", mapper.getproduct(p_barcode));
+       
+       System.out.println(result);
+       
+       return result;
     }
     
     
@@ -127,43 +127,33 @@ public class EzMartController {
     @RequestMapping("/productSearch.do")
     public Object productSearch(String search){
    
-    	  return mapper.productSearch("%"+search+"%");
-    	
+         return mapper.productSearch("%"+search+"%");
+       
     }
   
     
     // 6-1. 장바구니에 상품 담기
     @ResponseBody
     @RequestMapping("/insertbasket.do")
-    public String insertbasket(SaveVO vo, Model model) {
-    	
-    	System.out.println(vo.getMb_id());
-    	System.out.println(vo.getP_price());
-    	System.out.println(vo.getP_name());
-    	System.out.println(vo.getP_image());
-    	System.out.println(vo.getP_seq());
-    	
-//    	tbl_basket vo1 = new tbl_basket();
-//    	vo1.setP_seq(Integer.parseInt(vo.getP_seq()));
-//    	vo1.setMb_id(vo.getMb_id());
-
-    	
-    	mapper.insertbasket(vo);
-    	return "insertbasket";
-    	
-    	
+    public String insertbasket(tbl_basket vo) {
+       
+    	System.out.println(vo);
+       mapper.insertbasket(vo);
+       return "insertbasket";
+       
+       
     }
-	
+   
 
-	// 6-2. 장바구니 리스트 
+   // 6-2. 장바구니 리스트 
     @ResponseBody
     @RequestMapping("/basketlist.do")
     public List<tbl_basketall> basketlist(Model model, String mb_id) {
-    	List<tbl_basketall> list = mapper.basketlist(mb_id);
-    	model.addAttribute("list", list);
-    	System.out.println(list);  	
+       List<tbl_basketall> list = mapper.basketlist(mb_id);
+       model.addAttribute("list", list);
+       System.out.println(list);     
 
-    	return list;
+       return list;
     }
  
     // 6-3. 장바구니 상품 삭제하기
