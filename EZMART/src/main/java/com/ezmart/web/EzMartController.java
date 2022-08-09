@@ -167,9 +167,11 @@ public class EzMartController {
     }
  
     // 6-3. 장바구니 상품 삭제하기
+    @ResponseBody
     @RequestMapping("/basketdelete.do")
     public String delete(int b_seq) {
     	mapper.basketdelete(b_seq);
+    	System.out.println(b_seq);
     	return "basketlist";
     }
     
