@@ -24,6 +24,7 @@ import com.ezmart.domain.MemberVO;
 import com.ezmart.domain.SaveVO;
 import com.ezmart.domain.tbl_basket;
 import com.ezmart.domain.tbl_basketall;
+import com.ezmart.domain.tbl_buy;
 import com.ezmart.domain.tbl_member;
 import com.ezmart.domain.tbl_product;
 import com.ezmart.mapper.EzMartMapper;
@@ -165,6 +166,17 @@ public class EzMartController {
     	return "basketlist";
     }
     
+    
+    // 7. 구매내역 리스트
+    @ResponseBody
+    @RequestMapping("/buylist.do")
+    public List<tbl_buy> buylist(Model model, String mb_id) {
+    	List<tbl_buy> list = mapper.buylist(mb_id);
+    	model.addAttribute("list", list);
+    	System.out.println(list);
+    	
+    	return list;
+    }
     
     
     

@@ -56,4 +56,13 @@
     </delete>
     
     
+    <!-- 구매내역 리스트 -->
+	<select id="buylist" resultType="com.ezmart.domain.tbl_buy">
+		select d.bd_seq, d.p_seq, p.p_name, p.p_seq, p.p_cate, p.p_image, b.buy_discount, b.buy_total, b.pay_amount, b.pay_method, b.buy_date, b.mb_id
+		from tbl_buy_detail d, tbl_product p, tbl_buy b
+		where d.p_seq = p.p_seq
+			and b.mb_id = #{mb_id}      
+    </select>
+    
+    
 </mapper>
