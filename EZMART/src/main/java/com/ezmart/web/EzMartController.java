@@ -109,6 +109,15 @@ public class EzMartController {
        return result;
     }
     
+	// 3-1. 상품목록 - 욕실용품
+	@ResponseBody
+	@RequestMapping("/cateList.do")
+	public List<tbl_product> catelist(int p_sort) {
+		List<tbl_product> list = mapper.catelist(p_sort);
+		System.out.println(list);
+		
+		return list;
+	}
     
     // 4. 상품정보 바코드로 불러오기
     @ResponseBody

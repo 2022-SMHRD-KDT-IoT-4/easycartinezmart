@@ -20,6 +20,10 @@
          select * from tbl_product 
     </select>
     
+    <!-- 상품리스트 - 카테고리별 -->
+    <select id="catelist" resultType="com.ezmart.domain.tbl_product">
+        select * from tbl_product where p_sort = #{p_sort}
+    </select>
     
     <!-- 바코드로 상품정보 가져오기 -->
     <select id="getproduct" resultType="com.ezmart.domain.tbl_product">

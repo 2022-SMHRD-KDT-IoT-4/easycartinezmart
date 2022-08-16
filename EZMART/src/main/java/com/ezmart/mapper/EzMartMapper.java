@@ -34,6 +34,9 @@ public interface EzMartMapper {
 	
 	// 구매내역 리스트
 	public List<tbl_buy> buylist(String mb_id);
+	
+	// 상품리스트 - 카테고리별
+	public List<tbl_product> catelist(int p_sort);
 
 	
 
