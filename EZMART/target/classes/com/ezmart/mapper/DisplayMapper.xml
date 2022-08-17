@@ -13,5 +13,32 @@
     </select>
     
    
+    <!-- 구매 목록 추가하기 -->
+    <insert id="insertBuy" parameterType="com.ezmart.domain.tbl_buy">
+        insert into tbl_buy 
+        values (tbl_buy_SEQ.NEXTVAL, #{buy_total}, to_date(sysdate, 'yyyy.mm.dd hh24:mi'), #{mb_id}, #{buy_discount}, #{pay_amount}, #{pay_method}, 'y')
+    </insert>
+    
+    <!-- 구매 목록 최근 이력 조회 -->
+    <select id="recodeBuy" parameterType="com.ezmart.domain.tbl_buy_real" resultType="com.ezmart.domain.tbl_buy_real">
+        select * from tbl_buy where buy_date = (select max(buy_date) from tbl_buy where mb_id = #{mb_id}) and mb_id=#{mb_id}
+    </select>
+    
+    <!-- 상품 번호 조회 -->
+    <select id="numInquire" parameterType="String" resultType="com.ezmart.domain.tbl_product">
+        select * from tbl_product where p_barcode = #{p_barcode}
+    </select>
+    
+    <!-- 상품 디테일 DB 삽입 -->
+    <insert id="insertDetail" parameterType="com.ezmart.domain.tbl_buy_detail">
+        insert into tbl_buy_detail(buy_seq, p_seq, bd_cnt, bd_date) values(#{buy_seq}, #{p_seq}, #{bd_cnt}, sysdate)
+    </insert>
+    
+    <!-- 구매 정보 DB 삽입 -->
+    <insert id="insertBuyInfo" parameterType="com.ezmart.domain.tbl_buy_real">
+        insert into tbl_buy(buy_total, buy_date, mb_id, buy_discount, pay_amount, pay_method, pay_yn) values(#{buy_total}, sysdate, #{mb_id}, #{buy_discount}, #{pay_amount}, #{pay_method}, #{pay_yn})
+    </insert>
+    
+    
     
 </mapper>
