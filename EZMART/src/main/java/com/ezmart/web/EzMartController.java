@@ -24,6 +24,7 @@ import com.ezmart.domain.MemberVO;
 import com.ezmart.domain.SaveVO;
 import com.ezmart.domain.tbl_basket;
 import com.ezmart.domain.tbl_basketall;
+import com.ezmart.domain.tbl_buy;
 import com.ezmart.domain.tbl_member;
 import com.ezmart.domain.tbl_product;
 import com.ezmart.mapper.EzMartMapper;
@@ -108,6 +109,15 @@ public class EzMartController {
        return result;
     }
     
+	// 3-1. 상품목록 - 욕실용품
+	@ResponseBody
+	@RequestMapping("/cateList.do")
+	public List<tbl_product> catelist(int p_sort) {
+		List<tbl_product> list = mapper.catelist(p_sort);
+		System.out.println(list);
+		
+		return list;
+	}
     
     // 4. 상품정보 바코드로 불러오기
     @ResponseBody
@@ -165,6 +175,17 @@ public class EzMartController {
     	return "basketlist";
     }
     
+    
+    // 7. 구매내역 리스트
+    @ResponseBody
+    @RequestMapping("/buylist.do")
+    public List<tbl_buy> buylist(Model model, String mb_id) {
+    	List<tbl_buy> list = mapper.buylist(mb_id);
+    	model.addAttribute("list", list);
+    	System.out.println(list);
+    	
+    	return list;
+    }
     
     
     

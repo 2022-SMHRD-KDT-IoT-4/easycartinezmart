@@ -25,7 +25,11 @@ public class tbl_basketall {
 	private int p_sort;
 
 	private String mb_id;
+<<<<<<< HEAD
 	
 	private int b_amount;
+=======
+	private String p_barcode;
+>>>>>>> branch 'master' of https://github.com/2022-SMHRD-KDT-IoT-4/easycartinezmart.git
 
 }

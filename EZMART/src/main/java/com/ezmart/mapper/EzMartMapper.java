@@ -6,6 +6,7 @@ import com.ezmart.domain.MemberVO;
 import com.ezmart.domain.SaveVO;
 import com.ezmart.domain.tbl_basket;
 import com.ezmart.domain.tbl_basketall;
+import com.ezmart.domain.tbl_buy;
 import com.ezmart.domain.tbl_product;
 
 public interface EzMartMapper {
@@ -30,6 +31,12 @@ public interface EzMartMapper {
 	
 	// 장바구니 삭제하기
 	public int basketdelete(int b_seq);
+	
+	// 구매내역 리스트
+	public List<tbl_buy> buylist(String mb_id);
+	
+	// 상품리스트 - 카테고리별
+	public List<tbl_product> catelist(int p_sort);
 
 	
 
