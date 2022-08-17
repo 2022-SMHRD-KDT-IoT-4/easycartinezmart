@@ -15,6 +15,7 @@ import com.ezmart.domain.tbl_buy_detail;
 import com.ezmart.domain.tbl_buy_real;
 import com.ezmart.domain.tbl_product;
 import com.ezmart.mapper.DisplayMapper;
+import com.ezmart.mapper.EzMartMapper;
 
 @Controller
 public class DisplayController {
@@ -40,6 +41,7 @@ public class DisplayController {
 	@ResponseBody
 	@RequestMapping("/getbuylist.do")
 	public String getbuylist(String vo, String user_id) {
+		
 		System.out.println(vo);
 		String[] vo_result = vo.split("VO\\{");
 		int i = 1;
@@ -115,8 +117,11 @@ public class DisplayController {
 			mapper.insertDetail(buy_detail);
 			cnt++;
 		}
-		//System.out.println(buy.getMb_id());
 		
+		System.out.println(buyInfo.getMb_id()+"  /  "+buyInfo.getBuy_seq());
+		buy.setBuy_seq(buyInfo.getBuy_seq());
+		mapper.updateBasketCheck(buy);
+		System.out.println(buy);
 		
 		return "getbuylist";
 	}

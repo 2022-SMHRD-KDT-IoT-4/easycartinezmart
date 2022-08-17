@@ -2,6 +2,7 @@ package com.ezmart.mapper;
 
 import java.util.List;
 
+import com.ezmart.domain.tbl_basket;
 import com.ezmart.domain.tbl_basketall;
 import com.ezmart.domain.tbl_buy;
 import com.ezmart.domain.tbl_buy_detail;
@@ -26,6 +27,9 @@ public interface DisplayMapper {
 	
 	// 구매 정보 DB 삽입
 	public int insertBuyInfo(tbl_buy_real buy);
+	
+	// 결제한 상품 장바구니 목록에서 구매(b_check = 1)로 상태 변경하기
+	public void updateBasketCheck(tbl_buy_real buy);
 	
 	
 	
