@@ -25,5 +25,7 @@ public class tbl_basketall {
 	private int p_sort;
 
 	private String mb_id;
+	
+	private int b_amount;
 
 }
