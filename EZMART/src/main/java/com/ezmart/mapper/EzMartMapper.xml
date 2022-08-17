@@ -46,11 +46,7 @@
     
     <!-- 2. 장바구니 목록(아이디 기준으로 가져오기) -->
     <select id="basketlist" resultType="com.ezmart.domain.tbl_basketall">
-<<<<<<< HEAD
-      select m.mb_id, p.p_seq, p.p_price, p.p_image, p.p_name, p.p_cate, p.p_sort, b.b_seq, p.p_seq, b.b_date, b.b_check, b.b_amount
-=======
-      select m.mb_id, p.p_seq, p.p_price, p.p_image, p.p_name, p.p_cate, p.p_sort, b.b_seq, p.p_seq, b.b_date, b.b_check, p.p_barcode
->>>>>>> branch 'master' of https://github.com/2022-SMHRD-KDT-IoT-4/easycartinezmart.git
+      select m.mb_id, p.p_seq, p.p_price, p.p_image, p.p_name, p.p_cate, p.p_sort, b.b_seq, p.p_seq, b.b_date, b.b_check, b.b_amount, p.p_barcode
       from tbl_member m, tbl_product p, tbl_basket b
       where p.p_seq = b.p_seq
          and m.mb_id = b.mb_id
